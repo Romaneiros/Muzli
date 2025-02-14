@@ -1,0 +1,321 @@
+$font-size-base: 100%;
+$font-family-sans: Montserrat, sans-serif;
+$font-family-serif: Montserrat, sans-serif;
+
+$color-text: #fff;
+$color-muted: #777;
+
+$color-bg-body: #2f313c;
+$color-bg-home: #8FD2D1;
+$color-bg-gallery: #FFD256;
+$color-bg-blog: #019DCD;
+$color-bg-contact: #FD685B;
+$color-footer: #8c95ad;
+
+
+@function em($size, $context: 16) {
+    @return calc($size / $context) * 1em ;
+  }
+
+@mixin font-size($size, $context: 16) {
+    font-size: em($size, $context);
+}
+
+
+::selection {
+    background-color: #FCBD24;
+    color: #fff;
+}
+
+
+
+html {box-sizing: border-box;}
+*, *:before, *:after {box-sizing: inherit;}
+
+body {
+    color: $color-text;
+    background: $color-bg-body;
+    font: {
+        size: $font-size-base;
+        family: $font-family-sans;
+        weight: normal;
+    }
+    text-align: center;
+    margin: 0;
+}
+
+a {
+    color: $color-text;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+    border-radius: em(4) em(4) 0 0;
+}
+
+h1 {
+    font-size: em(75);
+    text-transform: uppercase;
+    margin-bottom: em(22, 75);
+}
+
+.menu {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+
+    li, a {
+        display: inline-block;
+    }
+}
+
+.site-header {
+    background: #fff;
+    a {
+        color: $color-muted;
+        font-size: em(25);
+        padding: em(24) em(8);
+        &:hover,
+        &:focus {
+            color: lighten($color-muted, 20%);
+        }
+    }
+}
+
+main {
+    background: $color-bg-home;
+    border-top: 1px solid darken($color-bg-home, 10%);
+    .blog & {
+        background: $color-bg-blog;
+        border-color: darken($color-bg-blog, 8%);
+    }
+    .contact & {
+        background: $color-bg-contact;
+        border-color: darken($color-bg-contact, 15%);
+    }
+    .gallery & {
+        background: $color-bg-gallery;
+        border-color: darken($color-bg-gallery, 15%);
+    }
+}
+
+.shadow {
+    text-shadow: - em(1) em(1) em(0) darken($color-bg-home, 10%);
+
+    .gallery & {text-shadow: - em(1) em(1) em(0) darken($color-bg-gallery, 15%);}
+    .blog & {text-shadow: - em(1) em(1) em(0) darken($color-bg-blog, 10%);}
+    .contact & {text-shadow: - em(1) em(1) em(0) darken($color-bg-contact, 15%);}
+}
+
+.active a {
+    color: darken($color-bg-home,25%);
+    
+
+    .gallery & {color: darken($color-bg-gallery, 25%);}
+    .blog & {color: darken($color-bg-blog, 25%);}
+    .contact & {color: darken($color-bg-contact, 25%);}
+}
+
+
+.content {
+    padding: {
+        top: em(80);
+        bottom: em(80);
+    }
+    @media (max-width: 640px) {
+        main {
+            font-size: 85%;
+            h2 br {display: none;}
+        }
+    }
+
+}
+
+.image-grid {
+    img {
+        float: left;
+        width: 49%;
+        margin: .5%;
+        border-radius: em(4);
+        margin-top: em(48);
+        @media (max-width: 640px) {
+            & {
+                float: none;
+                width: 100%;
+                margin: 0.5em 0;
+            }
+
+        }
+    }
+}
+
+.container {
+    max-width: em(1024);
+    padding: 0 em(16);
+    margin: 0 auto;
+}
+
+.group:before,
+.group:after {content: " ";display:table;}
+.group:after {clear:both;}
+
+.btn {
+    font: {
+        size: em(17);
+        family: $font-family-sans;
+    }
+    color: $color-text;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: em(34) 0;
+    padding: em(20) em(24);
+    border-radius: em(6);
+}
+
+.btn-red {
+    @extend .btn;
+    background-color: rgba(253, 104, 91, 1);
+    &:hover, &:focus {
+        background-color: rgba(253, 104, 91, 0.85);
+    }
+}
+
+.btn-green {
+    @extend .btn;
+    background-color: rgba(57, 174, 144, 1);
+    &:hover, &:focus {
+        background-color: rgba(57, 174, 144, 0.85);
+    }
+}
+
+.btn-yellow {
+    @extend .btn;
+    background-color: rgba(254, 205, 94, 1);
+    &:hover, &:focus {
+        background-color: rgba(254, 205, 94, 0.85);
+    }
+}
+
+.btn-white {
+    @extend .btn;
+    background-color: rgb(255, 255, 255);
+    &:hover, &:focus {
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+}
+
+.pre-footer {
+    background: lighten($color-bg-body, 3%);
+    padding: em(68) 0 em(72);
+
+    p {
+        color: darken($color-text, 10%);
+        font-size: em(18);
+        line-height: em(28, 18);
+        margin: em(28, 18) 0 em(30, 18);
+    }
+
+    .btn {
+        margin: 0;
+        font-size: 85%;
+    }
+
+    @media (max-width: 640px) {
+        & {
+            font-size: 85%;
+            p br {display: none;}
+            padding: em(54) 0 em(64);
+        }
+    }
+}
+
+.site-footer {
+    padding: em(30) 0;
+    color: $color-footer;
+
+    a, span {
+        color: transparentize($color-footer, .5);
+    }
+
+    a {
+        border-bottom: 1px solid darken($color-footer, 30%);
+                        
+        }
+
+    span {
+        padding-left: em(16);
+    }
+}
+
+.post-list {
+    max-width:  em(696);
+    margin: em(86) auto 0;
+    text-align: left;
+
+    .post {
+        margin: em(64) 0;
+        line-height: em(27);
+    }
+
+    p {
+        color: transparentize($color-text, 0.1);
+    }
+
+    .post-title {
+        font-size: em(30);
+        margin-bottom: em(34, 30);
+        text-transform: none;
+    }
+
+    .load-older {
+        margin-top: 0;
+    }
+}
+
+.contact-form {
+    max-width: em(560);
+    margin: em(72) auto 0;
+    text-align: left;
+
+    label {
+        font-size: em(17);
+        display: block;
+        margin-bottom: em(22);
+    }
+}
+
+.btn-white {
+    font-size: 85%;
+    margin-top: 0;
+    padding: {
+        left: 2.5em;
+        right: 2.5em;
+    }
+    color: black;
+}
+
+input, textarea {
+    color: $color-text;
+    font: {
+        size: em(14);
+        family: $font-family-sans;
+        weight: normal;
+    }
+    border: 2px solid rgba(black, 0.1);
+    background-color: rgba(white, 0.05);
+    outline: none;
+    padding: em(10);
+    margin-top: em(6);
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    border-radius: em(5);
+    &:focus {
+        border-color: rgba(white, 0.5);
+    }
+}
